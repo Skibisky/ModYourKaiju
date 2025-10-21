@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4691232423494750697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6464482038306698187}
+  - component: {fileID: 5440051333059779842}
+  - component: {fileID: 986223948767551958}
+  - component: {fileID: -3940474580790029022}
+  - component: {fileID: -5306791254105466235}
+  m_Layer: 0
+  m_Name: ProjectContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6464482038306698187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 12.989172, z: -12.928354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5440051333059779842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -925824796, guid: aaf69b423f64f7542b4280669ee303b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: -5306791254105466235}
+  - {fileID: -3940474580790029022}
+  _installerPrefabs: []
+  _parentNewObjectsUnderContext: 1
+  _editorReflectionBakingCoverageMode: 0
+  _buildsReflectionBakingCoverageMode: 0
+  _settings:
+    _ensureDeterministicDestructionOrderOnApplicationQuit: 0
+    _displayWarningWhenResolvingDuringInstall: 1
+    _validationRootResolveMethod: 1
+    _validationErrorResponse: 1
+    _signalSettings:
+      _defaultSyncMode: 0
+      _missingHandlerDefaultResponse: 1
+      _requireStrictUnsubscribe: 0
+      _defaultAsyncTickPriority: 1
+--- !u!114 &986223948767551958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb518251d7a39b4f95b8c465f632ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameStateTransitionServiceArgs:
+    ExitStateTransitionDuration: 0
+    EnterStateTransitionDuration: 0
+  PlayerDeviceManagerArgs:
+    CreateGamepadPlayers: 0
+    CreateKeyboardPlayers: 1
+    CreateMannequinKaiju: 0
+  MykPlayerManagerArgs:
+    MeYouRegistrationCapacity: 0
+    KaijuRegistrationCapacity: 0
+  BiplaneHealth: 200
+  VehicleTakeDamageFromPhysicsArgs:
+    DamagePerImpulse: 10
+    ImpulseThreshold: 0
+  VehicleDamageEffectsArgs:
+    ExplosionPrefab: {fileID: 5880972602141851182, guid: b084f86597012f349b14eae00d4a58ab,
+      type: 3}
+    CollisionPrefab: {fileID: 5880972602141851182, guid: b084f86597012f349b14eae00d4a58ab,
+      type: 3}
+  DamageAudioArgs:
+    OnHit:
+      Clip: {fileID: 0}
+      Volume: 0
+      Spatial: 0
+      MinDistance: 0
+      MaxDistance: 0
+      RollOff: 0
+      Looping: 0
+    OnDeath:
+      Clip: {fileID: 0}
+      Volume: 0
+      Spatial: 0
+      MinDistance: 0
+      MaxDistance: 0
+      RollOff: 0
+      Looping: 0
+  DamageOverlayArgs:
+    HitColour: {r: 0, g: 0, b: 0, a: 0}
+    HitDuration: 0
+    DeathColour: {r: 0, g: 0, b: 0, a: 0}
+    DeathDuration: 0
+  SmoothFollowArgs:
+    Follow:
+      Offset_World: {x: 0, y: 0, z: 0}
+      Offset_Local: {x: 0, y: 0, z: 0}
+      Offset_Local_Flat: {x: 0, y: 0}
+      Offset_Velocity: 0
+      Offset_Velocity_Y_Scale: 0
+      Offset_Velocity_Max: 0
+      Responsiveness: 0
+    LookAt:
+      Offset_World: {x: 0, y: 0, z: 0}
+      Offset_Local: {x: 0, y: 0, z: 0}
+      Offset_Local_Flat: {x: 0, y: 0}
+      Offset_Velocity: 0
+      Offset_Velocity_Y_Scale: 0
+      Offset_Velocity_Max: 0
+      Responsiveness: 0
+  ctx: {fileID: 5440051333059779842}
+  cfgr: {fileID: -5306791254105466235}
+  IsHacked: 1
+  modInstall: {fileID: -3940474580790029022}
+--- !u!114 &-3940474580790029022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 252352150, guid: ec981b63cef708049a4c7aef7cdc0559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5306791254105466235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 87725536, guid: ec981b63cef708049a4c7aef7cdc0559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssetModules: []
+  BehaviourModules:
+  - {fileID: 986223948767551958}
