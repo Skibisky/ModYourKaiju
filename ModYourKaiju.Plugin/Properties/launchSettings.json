@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ModYourKaiju.Plugin": {
+      "commandName": "Project"
+    },
+    "Test": {
+      "commandName": "Executable",
+      "executablePath": "F:\\SteamLibrary\\steamapps\\common\\Me, You and Kaiju\\Me, You and Kaiju.exe"
+    }
+  }
+}
