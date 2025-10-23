@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 986223948767551958}
   - component: {fileID: -3940474580790029022}
   - component: {fileID: -5306791254105466235}
+  - component: {fileID: -542045141518555634}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -77,6 +78,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb518251d7a39b4f95b8c465f632ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ctx: {fileID: 5440051333059779842}
+  cfgr: {fileID: -5306791254105466235}
+  IsHacked: 1
+  modInstall: {fileID: -3940474580790029022}
+  MykAudioGroups: {fileID: 11400000, guid: 98262ef0cf2470c4489d3506250a9b18, type: 2}
+  SmoothFollowArgs:
+    Follow:
+      Offset_World: {x: 0, y: 0, z: 0}
+      Offset_Local: {x: 0, y: 0, z: 0}
+      Offset_Local_Flat: {x: 0, y: 0}
+      Offset_Velocity: 0
+      Offset_Velocity_Y_Scale: 0
+      Offset_Velocity_Max: 0
+      Responsiveness: 0
+    LookAt:
+      Offset_World: {x: 0, y: 0, z: 0}
+      Offset_Local: {x: 0, y: 0, z: 0}
+      Offset_Local_Flat: {x: 0, y: 0}
+      Offset_Velocity: 0
+      Offset_Velocity_Y_Scale: 0
+      Offset_Velocity_Max: 0
+      Responsiveness: 0
   GameStateTransitionServiceArgs:
     ExitStateTransitionDuration: 0
     EnterStateTransitionDuration: 0
@@ -85,9 +108,8 @@ MonoBehaviour:
     CreateKeyboardPlayers: 1
     CreateMannequinKaiju: 0
   MykPlayerManagerArgs:
-    MeYouRegistrationCapacity: 0
-    KaijuRegistrationCapacity: 0
-  BiplaneHealth: 200
+    MeYouRegistrationCapacity: 1
+    KaijuRegistrationCapacity: 1
   VehicleTakeDamageFromPhysicsArgs:
     DamagePerImpulse: 10
     ImpulseThreshold: 0
@@ -118,27 +140,59 @@ MonoBehaviour:
     HitDuration: 0
     DeathColour: {r: 0, g: 0, b: 0, a: 0}
     DeathDuration: 0
-  SmoothFollowArgs:
-    Follow:
-      Offset_World: {x: 0, y: 0, z: 0}
-      Offset_Local: {x: 0, y: 0, z: 0}
-      Offset_Local_Flat: {x: 0, y: 0}
-      Offset_Velocity: 0
-      Offset_Velocity_Y_Scale: 0
-      Offset_Velocity_Max: 0
-      Responsiveness: 0
-    LookAt:
-      Offset_World: {x: 0, y: 0, z: 0}
-      Offset_Local: {x: 0, y: 0, z: 0}
-      Offset_Local_Flat: {x: 0, y: 0}
-      Offset_Velocity: 0
-      Offset_Velocity_Y_Scale: 0
-      Offset_Velocity_Max: 0
-      Responsiveness: 0
-  ctx: {fileID: 5440051333059779842}
-  cfgr: {fileID: -5306791254105466235}
-  IsHacked: 1
-  modInstall: {fileID: -3940474580790029022}
+  MiniGunArgs:
+    HudSprite: {fileID: 0}
+    Prefab: {fileID: 0}
+    FireBehaviourArgs:
+      DamagePerRound: 0
+      Projectile: {fileID: 0}
+      ProjectileHit: {fileID: 0}
+      FirePositionOffset_Local: {x: 0, y: 0, z: 0}
+      FireClips: []
+    CooldownBehaviourArgs:
+      RateOfFire:
+        Value: 0
+    Reticle:
+      MaxDistance: 0
+      PullForwardDistance: 0
+      CrossSizeConstant: 0
+      CrossSizePerMetre: 0
+      CrossGapLengthMin: 0
+      CrossGapLengthMax: 0
+      CrossStrokeLength: 0
+      CrossThickness: 0
+      CrossAlpha: 0
+      CrossAngVelMax: 0
+      ConformToSurfaceNormal: 0
+      CrossThicknessSpace: 0
+      CrossZTest: 0
+      LockLocation:
+        x: 0
+        y: 0
+      LockText: 
+      RingRadius: 0
+      RingThicknessSpace: 0
+      RingThickness: 0
+      RingAlpha: 0
+      RingZTest: 0
+      CustomRingColour: {r: 0, g: 0, b: 0, a: 0}
+      UseCustomRingColour: 0
+      RayThickness: 0
+      RayThicknessSpace: 0
+      RayAlpha: 0
+      RayZTest: 0
+      TargetColour: {r: 0, g: 0, b: 0, a: 0}
+      InRangeColour: {r: 0, g: 0, b: 0, a: 0}
+      VoidColour: {r: 0, g: 0, b: 0, a: 0}
+  PlayerMarkerSlotArgs:
+    StartingPlayerMarker: {fileID: 11400000, guid: 5e89e0ef21479fd48acd1df99d747f91,
+      type: 2}
+  TrailVisualEffectAsset: {fileID: 0}
+  RingSpawnerArgs:
+    MinRadius: 0
+    MaxRadius: 0
+    MinHeight: 0
+    MaxHeight: 0
 --- !u!114 &-3940474580790029022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +220,15 @@ MonoBehaviour:
   AssetModules: []
   BehaviourModules:
   - {fileID: 986223948767551958}
+--- !u!114 &-542045141518555634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691232423494750697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fd26786f81519c47a4e38c490d7f4b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
