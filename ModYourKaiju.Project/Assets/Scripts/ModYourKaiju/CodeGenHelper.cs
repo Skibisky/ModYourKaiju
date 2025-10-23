@@ -14,6 +14,7 @@ public static class CodeGenHelper
     private static ModuleBuilder moduleBuilder = assemblyBuilder.DefineDynamicModule("MykMykDynamicModule");
 
     private static Dictionary<string, Type> builtTypes = new();
+    
     public static Type GetOrCreateVehicleTier2<T, U>()
         where T : ICustomVehicle
         where U : IContext, IContainer, IActivationTokenInspector
@@ -24,7 +25,7 @@ public static class CodeGenHelper
         if (!builtTypes.ContainsKey(myTypeName))
         {
             var typeBuilder = moduleBuilder.DefineType(myTypeName, TypeAttributes.Public | TypeAttributes.Class | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit,
-                typeof(CustomVehicleContext<T>), new Type[] { typeof(IGameState), typeof(ITier2), typeof(IGameplay), typeof(T), typeof(U) });
+                typeof(CustomVehicleContext<T>), new Type[] { typeof(IVehicle), typeof(IGameState), typeof(ITier2), typeof(IGameplay), typeof(T), typeof(U) });
             builtTypes[myTypeName] = typeBuilder.CreateType();
         }
 
@@ -36,12 +37,12 @@ public static class CodeGenHelper
         where U : IContext, IContainer, IActivationTokenInspector
     {
         var baseType = typeof(T);
-        var myTypeName = baseType.Name + "_" + typeof(U).Name;
+        var myTypeName = "MeYou_" + baseType.Name + "_" + typeof(U).Name;
 
         if (!builtTypes.ContainsKey(myTypeName))
         {
             var typeBuilder = moduleBuilder.DefineType(myTypeName, TypeAttributes.Public | TypeAttributes.Class | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit,
-                typeof(CustomVehicleContext<T>), new Type[] { typeof(IGameState), typeof(IMeYou), typeof(ITier3), typeof(IGameplay), typeof(T), typeof(U) });
+                typeof(CustomVehicleContext<T>), new Type[] { typeof(IVehicle), typeof(IGameState), typeof(IMeYou), typeof(ITier3), typeof(IGameplay), typeof(T), typeof(U) });
             builtTypes[myTypeName] = typeBuilder.CreateType();
         }
 
@@ -55,10 +56,10 @@ public static class CodeGenHelper
     {
         var baseType = typeof(TCustomVehicle);
         var myTypeName = baseType.Name + "_GameStateManager";
-        Debug.Log($"{myTypeName}");
 
         if (!builtTypes.ContainsKey(myTypeName))
         {
+            Debug.Log($"Runtime codegen {myTypeName}");
             var cv_dm = GetOrCreateVehicleTier2<TICustomVehicle, IDeathmatch>();
             var cv_lb = GetOrCreateVehicleTier2<TICustomVehicle, ILobby>();
             var cv_tt = GetOrCreateVehicleTier2<TICustomVehicle, ITitle>();
@@ -82,10 +83,10 @@ public static class CodeGenHelper
 
         var baseType = typeof(TCustomVehicle);
         var myTypeName = "MeYou_" + baseType.Name + "_GameStateManager";
-        Debug.Log($"{myTypeName}");
 
         if (!builtTypes.ContainsKey(myTypeName))
         {
+            Debug.Log($"Runtime codegen {myTypeName}");
             var mycv_dm = GetOrCreateVehicleTier3<TICustomVehicle, IDeathmatch>();
             var mycv_lb = GetOrCreateVehicleTier3<TICustomVehicle, ILobby>();
             var mycv_tt = GetOrCreateVehicleTier3<TICustomVehicle, ITitle>();

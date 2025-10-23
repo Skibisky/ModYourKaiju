@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DepartmentOfMotorVehicles
+public static class DepartmentOfMotorVehicles
 {
     static int next = 20;
 

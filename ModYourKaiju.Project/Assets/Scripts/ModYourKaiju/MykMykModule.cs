@@ -1,12 +1,7 @@
-using Sentient;
 using Sentient.Injection;
 using Sentient.MeYouKaiju;
 using Sentient.Players;
 using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Reflection;
-using System.Reflection.Emit;
 using UnityEngine;
 
 public abstract class MykMykModule : AbstractModuleComponent
@@ -28,7 +23,7 @@ public abstract class MykMykModule : AbstractModuleComponent
         Add<PostCurrentVehicleWeaponsToVM>();
     }
 
-    protected void GenerateGameStateManager<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>() 
+    protected void GenerateVehicleGameStateManager<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>() 
         where TICustomVehicle : ICustomVehicle 
         where TCustomVehicle :  OwnableCustomVehicleContext<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>, ISelectableVehicle, ITier1, TICustomVehicle
         where TMeYouCustomVehicle : CustomVehicleContext<TICustomVehicle>, IMeYou, ITier2, TICustomVehicle, IOwned<TMeYouCustomVehicle, MeYou, TCustomVehicle>, IOwned
@@ -38,7 +33,7 @@ public abstract class MykMykModule : AbstractModuleComponent
         Add(gsmt);
     }
 
-    protected void GenerateMeYouGameStateManager<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>() 
+    protected void GenerateMeYouVehicleGameStateManager<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>() 
         where TICustomVehicle : ICustomVehicle 
         where TCustomVehicle :  OwnableCustomVehicleContext<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>, ISelectableVehicle, ITier1, TICustomVehicle
         where TMeYouCustomVehicle : CustomVehicleContext<TICustomVehicle>, IMeYou, ITier2, TICustomVehicle, IOwned<TMeYouCustomVehicle, MeYou, TCustomVehicle>, IOwned

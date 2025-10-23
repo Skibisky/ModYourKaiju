@@ -13,7 +13,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 using Zenject;
 
 public class ProjectDiHack : MykMykModule
@@ -107,6 +106,7 @@ public class ProjectDiHack : MykMykModule
 
             Container.BindInterfacesAndSelfTo<InputDevice>().FromResolveGetter<ProjectContext, InputDevice>(pc =>
             {
+                Debug.Log($"InputDevice in {(snapModule ? snapModule.testContext : "null")}");
                 // shove keyboard in
                 if (snapModule && snapModule.testContext == SceneModule.TestContext.KaijuDeathMatch)
                 {
@@ -164,6 +164,15 @@ public class ProjectDiHack : MykMykModule
                 Expose(prefs);
             }
         }
+        if (context is IPlayer)
+        {
+            Add<PlayerServices>();
+            Add<PlayerSubContainers>();
+            Container.BindInterfacesAndSelfTo<PlayerSkeleton>().FromSubComponent<PlayerServices>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerNetwork>().FromSubComponent<PlayerServices>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerFirstPerson>().FromSubComponent<PlayerServices>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerTransformController>().FromSubComponent<PlayerServices>().AsSingle();
+        }
         if (context is MeYou my)
         {
             my.SetPlayerType(PlayerType.RealPlayer);
@@ -177,21 +186,16 @@ public class ProjectDiHack : MykMykModule
 
             if (snapModule && snapModule.testContext == SceneModule.TestContext.VehicleDeathmatch)
             {
-                Getter<CameraRig, ProjectContext>( c => FindObjectOfType<CameraRig>());
+                Getter<CameraRig, ProjectContext>(c => FindObjectOfType<CameraRig>());
                 Add<ConfigureCameraForMeYou>();
                 Add<LookAtVehicle>();
                 Add<FakeMeYouRespawner>();
             }
 
         }
-        if (context is IPlayer)
+        if (context is IDeathmatch and IShell and ITier2)
         {
-            Add<PlayerServices>();
-            Add<PlayerSubContainers>();
-            Container.BindInterfacesAndSelfTo<PlayerSkeleton>().FromSubComponent<PlayerServices>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerNetwork>().FromSubComponent<PlayerServices>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerFirstPerson>().FromSubComponent<PlayerServices>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerTransformController>().FromSubComponent<PlayerServices>().AsSingle();
+            //Add<MakeShellsSquishy>(new object[1] { SquishyArgs });
         }
         if (context is IVehicle vehCtx and ITier1)
         {

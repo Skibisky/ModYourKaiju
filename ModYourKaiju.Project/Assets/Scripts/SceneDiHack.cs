@@ -13,6 +13,16 @@ public class SceneDiHack : MonoInstaller
 
     public SceneModule sceneModule;
 
+    public void OnValidate()
+    {
+        if (!sceneContext)
+            sceneContext = FindObjectOfType<SceneContext>();
+        if (!modInstall)
+            modInstall = FindObjectOfType<ModulesInstaller>();
+        if (!sceneModule)
+            sceneModule = FindObjectOfType<SceneModule>();
+    }
+
     [ContextMenu("check hack")]
     public void CheckHack()
     {
@@ -23,8 +33,14 @@ public class SceneDiHack : MonoInstaller
     public void DoHack()
     {
         if (modInstall)
-            sceneContext.Installers = sceneContext.Installers.Union(new MonoInstaller[] {this, modInstall  });
+            sceneContext.Installers = sceneContext.Installers.Union(new MonoInstaller[] { this, modInstall });
         CheckHack();
+    }
+
+    [ContextMenu("prepare scene for exporting")]
+    public void SmallHack()
+    {
+        sceneContext.Installers = sceneContext.Installers.Except(new MonoInstaller[] { this }).Union(new MonoInstaller[] { modInstall });
     }
 
     public override void InstallBindings()

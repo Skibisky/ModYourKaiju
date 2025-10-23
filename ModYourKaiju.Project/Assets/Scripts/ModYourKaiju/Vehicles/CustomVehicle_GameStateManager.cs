@@ -17,6 +17,12 @@ public class CustomVehicle_GameStateManager<TCustomVehicle, TICustomVehicle, TMe
         Debug.Log($"GSM for {typeof(TCustomVehicle)} started");
     }
 
+    [ComponentConstructor]
+    public void Construct()
+    {
+        Debug.Log($"Constructing GSM for {typeof(TCustomVehicle)}");
+    }
+
     protected override BaseObjectContext CreateChildContext(GameState state)
     {
         Debug.Log($"Creating child context for {typeof(TCustomVehicle)}");

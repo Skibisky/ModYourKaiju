@@ -11,9 +11,9 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
     where TCustomVehicle : OwnableCustomVehicleContext<TICustomVehicle, TCustomVehicle, TMeYouCustomVehicle>, ISelectableVehicle, ITier1, TICustomVehicle
     where TMeYouCustomVehicle : CustomVehicleContext<TICustomVehicle>, IMeYou, ITier2, TICustomVehicle, IOwned<TMeYouCustomVehicle, MeYou, TCustomVehicle>, IOwned
     where TCustomVehicleGameStateManager : AbstractCustomVehicle_GameStateManager<TCustomVehicle, TICustomVehicle, TMeYouCustomVehicle>
-    where TMYCustomVehicle_DM : BaseObjectContext, TICustomVehicle, IDeathmatch
-    where TMYCustomVehicle_L : BaseObjectContext, TICustomVehicle, ILobby
-    where TMYCustomVehicle_T : BaseObjectContext, TICustomVehicle, ITitle
+    where TMYCustomVehicle_DM : BaseObjectContext, TICustomVehicle, IDeathmatch, IMeYou
+    where TMYCustomVehicle_L : BaseObjectContext, TICustomVehicle, ILobby, IMeYou
+    where TMYCustomVehicle_T : BaseObjectContext, TICustomVehicle, ITitle, IMeYou
 {
     private TMeYouCustomVehicle _meYouVehicle;
 
@@ -36,6 +36,7 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
         _vehicleGsm = vehicleGsm;
         this.WhenActivated(delegate (CompositeDisposable disposer)
         {
+            Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} activated");
             meYouGsm.OnEvent.Subscribe(UpdateChildContainer).AddTo(disposer);
             vehicleGsm.OnEvent.Subscribe(UpdateChildContainer).AddTo(disposer);
             UpdateChildContainer();
@@ -44,36 +45,40 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
 
     private void UpdateChildContainer()
     {
+        Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} update child");
         GameState? gameState = _meYouGsm.CurrentState;
         if (_vehicleGsm.CurrentState != gameState)
-        {
             gameState = null;
-        }
 
         if (!base.gameObject.activeInHierarchy || !base.enabled)
-        {
             gameState = null;
-        }
 
-        if (gameState != _currentState)
+        if (gameState == _currentState)
+            return;
+
+        CleanupChild();
+        if (gameState.HasValue)
         {
-            CleanupChild();
-            if (gameState.HasValue)
+            Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} for {gameState.Value}");
+
+            _currentState = gameState;
+            _childContext = gameState.Value switch
             {
-                _currentState = gameState;
-                _childContext = gameState.Value switch
-                {
-                    GameState.Deathmatch => CreateChild<TMYCustomVehicle_DM>(),
-                    GameState.Lobby => CreateChild<TMYCustomVehicle_L>(),
-                    GameState.Title => CreateChild<TMYCustomVehicle_T>(),
-                    _ => throw new ArgumentOutOfRangeException(),
-                };
-            }
+                GameState.Deathmatch => CreateChild<TMYCustomVehicle_DM>(),
+                GameState.Lobby => CreateChild<TMYCustomVehicle_L>(),
+                GameState.Title => CreateChild<TMYCustomVehicle_T>(),
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+        }
+        else
+        {
+            Debug.LogWarning($"MYGSM {typeof(TCustomVehicle).Name} no gamestate");
         }
     }
 
     private T CreateChild<T>() where T : BaseObjectContext
     {
+        Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} create child {typeof(T).Name}");
         return SubContainerUtil.CreateFrom<T>(_meYouVehicle.AsPrimaryParent(parentChildToThis: true, linkChildsLifetimeToThis: true, OnChildDisposed), new AdditionalParent[2]
         {
             _meYouGsm.ChildContext_Untyped.Context.AsAdditionalParent(),
@@ -83,6 +88,7 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
 
     private void OnChildDisposed()
     {
+        Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} dispose child");
         if (!_destroyingChild && (bool)this)
         {
             _currentState = null;
@@ -92,6 +98,7 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
 
     private void CleanupChild()
     {
+        Debug.Log($"MYGSM {typeof(TCustomVehicle).Name} cleanup child");
         _destroyingChild = true;
         _childContext.SafeDestroy();
         _destroyingChild = false;

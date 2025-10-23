@@ -20,9 +20,7 @@ public abstract class OwnableCustomVehicleContext<T, U, V> : CustomVehicleContex
     IOwned IOwnable.TakeOwnership_Untyped(Context owner)
     {
         if (owner is not MeYou owner2)
-        {
             throw new ArgumentException("Owner must be a MeYou", "owner");
-        }
 
         return TakeOwnership(owner2);
     }
