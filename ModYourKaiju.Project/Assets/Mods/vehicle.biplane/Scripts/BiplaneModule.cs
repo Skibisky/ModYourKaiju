@@ -29,7 +29,7 @@ public class BiplaneModule : MykMykModule
             Equip<SidewinderLauncher>(VehicleWeaponSlotType.Secondary);
             Equip<HellfireLauncher>(VehicleWeaponSlotType.Special);
 
-            Add<Biplane_GameStateManager>();
+            GenerateGameStateManager<IBiplane, Biplane, MeYou_Biplane>();
         }
         if (context is MeYou_Biplane mybp)
         {
@@ -51,7 +51,8 @@ public class BiplaneModule : MykMykModule
                 }
             });
             Add<EnableActionMap>(new EnableActionMap.Args { TargetMapName = "Helicopter", IsExclusiveMap = false });
-            Add<MeYou_Biplane_GameStateManager>();
+
+            GenerateMeYouGameStateManager<IBiplane, Biplane, MeYou_Biplane>();
         }
         if (context is IBiplane and ITier2 and IDeathmatch)
         {

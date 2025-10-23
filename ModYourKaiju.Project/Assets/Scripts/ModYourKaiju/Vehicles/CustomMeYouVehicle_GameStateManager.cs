@@ -30,6 +30,7 @@ public class CustomMeYouVehicle_GameStateManager<TICustomVehicle, TCustomVehicle
     [ComponentConstructor]
     private void Construct(TMeYouCustomVehicle meYouVehicle, MeYou_GameStateManager meYouGsm, TCustomVehicleGameStateManager vehicleGsm)
     {
+        Debug.Log($"Constructing MYGSM for {typeof(TCustomVehicle)}");
         _meYouVehicle = meYouVehicle;
         _meYouGsm = meYouGsm;
         _vehicleGsm = vehicleGsm;
