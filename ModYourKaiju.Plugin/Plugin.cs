@@ -23,6 +23,7 @@ public class Plugin : BaseUnityPlugin
     static int HasShimmed = 0;
 
     public static VehicleRepositoryPatch vehiclePatch;
+    public static GameplayLevelLoaderServicePatch levelPatch;
 
     private List<IMykMod> loadedMods = new();
 
@@ -153,6 +154,8 @@ public class Plugin : BaseUnityPlugin
             MykAssets.heliDamEfArgs = mykm.HelicopterDamageEffects;
             MykAssets.heliDamAudio = mykm.HelicopterDamageAudioConfig;
             MykAssets.heliGun = mykm.MiniGun;
+            Logger.LogInfo($"debug was {mykm.InstallDebugServices}");
+            mykm.InstallDebugServices = false;
         }
         if (ama is Myk_CodeGen_Module mykCodeGen)
         {

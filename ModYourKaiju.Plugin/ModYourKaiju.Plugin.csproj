@@ -44,6 +44,9 @@
 			<HintPath>..\ModYourKaiju.Project\Assets\Plugins\Sentient.Util.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="UnitySceneReference">
+		  <HintPath>..\ModYourKaiju.Project\Assets\Plugins\UnitySceneReference.dll</HintPath>
+		</Reference>
 		<Reference Include="Zenject">
 			<HintPath>..\ModYourKaiju.Project\Assets\Plugins\Zenject.dll</HintPath>
 			<Private>False</Private>

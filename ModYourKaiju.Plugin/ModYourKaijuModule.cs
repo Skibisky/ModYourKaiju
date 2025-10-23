@@ -14,10 +14,13 @@ public class ModYourKaijuModule : MykMykModule
         Plugin.Logger.LogInfo($"install {context.name} {context.GetType().Name} with already {Container.AllContracts.Count()} contracts + {Container.AllProviders.Count()} providers!");
         if (context is ProjectContext pc)
         {
+            Add<Debug_SetInitialGameState>(GameState.Title);
             Plugin.vehiclePatch = new VehicleRepositoryPatch();
+            Plugin.levelPatch = new GameplayLevelLoaderServicePatch();
             try
             {
                 Plugin.vehiclePatch.Patch();
+                Plugin.levelPatch.Patch();
             }
             catch (Exception ex)
             {
@@ -27,6 +30,10 @@ public class ModYourKaijuModule : MykMykModule
         if (context is Lobby lb)
         {
             Container.BindInterfacesAndSelfTo<LobbyHack>().FromNewComponentOnNewGameObject().AsSingle().NonLazy();
+        }
+        if (context is Deathmatch and ITier1)
+        {
+            Add<RequestGameplayLevelScene>();
         }
     }
 }

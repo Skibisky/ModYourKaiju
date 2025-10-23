@@ -1,0 +1,16 @@
+{
+    "name": "level.desert",
+    "rootNamespace": "",
+    "references": [
+        "GUID:42794d5e91883f144b7bec5409dee98c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
